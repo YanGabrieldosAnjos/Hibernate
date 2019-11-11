@@ -1,10 +1,6 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "aluno", uniqueConstraints={@UniqueConstraint(columnNames={"matricula"})})
@@ -14,9 +10,21 @@ public class Aluno {
     private String matricula;
     @Column(name = "nome", length = 30, nullable = false)
     private String nome;
+    @OneToMany(cascade=CascadeType.ALL, targetEntity = Nota.class)
+    @JoinTable(name="nota",joinColumns=@JoinColumn(name="matricula"),inverseJoinColumns=@JoinColumn(name="codigo"))
+    private Collection<Nota> nota =new ArrayList<>();
+
     public Aluno(String matricula, String nome) {
         this.matricula = matricula;
         this.nome = nome;
+    }
+
+    public Collection<Nota> getNota() {
+        return nota;
+    }
+
+    public void setNota(Collection<Nota> nota) {
+        this.nota = nota;
     }
 
     public String getNome() {

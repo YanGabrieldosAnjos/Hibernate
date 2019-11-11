@@ -7,7 +7,7 @@ public class Nota {
     @Column(name = "codigo", length=10, nullable=false, unique=true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     int codigo;
-    @OneToMany
+    @ManyToOne(targetEntity = Aluno.class)
     @JoinColumn(name = "aluno.matricula")
     String matricula;
     @Column(name = "nota", length=10,nullable = false)

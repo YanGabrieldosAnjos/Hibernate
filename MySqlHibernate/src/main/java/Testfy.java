@@ -12,18 +12,12 @@ public class Testfy {
         AlunoBD bd = new AlunoBD();
         Aluno a1 = new Aluno(mat,nome);
 
-        int i = 0;
-        int c = 0;
-        Nota notas [] = new Nota[100];
-        while (c != -1){
-            System.out.println("Qual a nota recebida");
-            float r = s.nextFloat();
-            System.out.println("Qual o código");
-            c = s.nextInt();
-            notas[i] = new Nota(c,a1.getMatricula(),r);
-            i++;
-        }
-        AlunoBD.insertAlunoWithNotas(a1,notas);
+        Nota n1 =  new Nota(1,"1076",10);
+        Nota n2 =  new Nota(2,"1076",10);
+
+        a1.getNota().add(n1);
+        a1.getNota().add(n2);
+        AlunoBD.createAluno(a1);
         System.out.println("foi");
 
     }
